@@ -9,11 +9,13 @@
 @endif  
 
     <div class="header flex">
-        <h1 class="title mt-5">Data Muzakki</h1>
-        <div class="container_item flex"> 
+        <div class="container_item d-flex mt-5 justify-content-between"> 
+            <h1 class="title">Data Muzakki</h1>
 
             @if (auth()->check())
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">Tambah</button>
+            <div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">Tambah</button>
+            </div>
 
             <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -56,7 +58,9 @@
                 </div>
             </div>
             @else
-            <button class="item tambah" href="{{ url('login') }}" data-bs-toggle="modal" data-bs-target="#modal_login">Tambah</button>
+            <div>            
+                <button class="item tambah" href="{{ url('login') }}" data-bs-toggle="modal" data-bs-target="#modal_login">Tambah</button>
+            </div>
 
             <div class="modal fade hapusModal" id="modal_login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
