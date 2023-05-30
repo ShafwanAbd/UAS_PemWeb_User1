@@ -137,7 +137,24 @@
                                     <div class="mb-3">
                                         <label for="input_hak" class="col-form-label">Hak:</label>
                                         <input name="hak" type="text" class="form-control" id="input_hak" type="number" required>
-                                    </div> 
+                                    </div>  
+
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#kumpulZakat_text').change(function() { 
+                                                var answ = $(this).val(); 
+                                                $.ajax({
+                                                    url: '{{ url("get_kategori_muzakki") }}' + '/' + answ,
+                                                    success: function(response) { 
+                                                        $('#input_hak').val(response.jumlahHak);
+                                                    },
+                                                    error: function(xhr) {
+                                                        console.log(xhr.responseText);
+                                                    }
+                                                });
+                                            })
+                                        })
+                                    </script>
                                 </div> 
                             </div>
 
@@ -156,7 +173,7 @@
     </div>
 </div>
 
-<div class="container_table mt-5">
+<div class="card p-2 container_table mt-5">
     <table class="table table-hover">
         @if ($datas->isEmpty() != true)
         <thead>
@@ -370,10 +387,8 @@
             @endforeach 
         </tbody> 
 
-        @else  
-        <div class="card p-5 mt-5"> 
-            <h5>Data Masih Kosong</h5>
-        </div>
+        @else   
+            <h5>Data Masih Kosong</h5> 
         @endif
     </table>
 </div>   

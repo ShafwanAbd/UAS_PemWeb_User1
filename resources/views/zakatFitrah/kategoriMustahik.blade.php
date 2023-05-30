@@ -59,7 +59,8 @@
 </div>
 
 <div class="container_table mt-5">
-    <table class="table table-hover">
+    <div class="card p-2">
+        <table class="table table-hover">
         @if ($datas->isEmpty() != true)
         <thead>
             <tr class="header-row">
@@ -159,6 +160,7 @@
         </div>
         @endif
     </table>
+    </div> 
 </div> 
 
 @endsection

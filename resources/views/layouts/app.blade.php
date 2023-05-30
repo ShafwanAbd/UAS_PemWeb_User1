@@ -39,12 +39,20 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow">
+            <style>
+                nav {
+                    background: rgb(0,68,167);
+                    background: linear-gradient(40deg, rgba(0,68,167,1) 0%, rgba(112,170,255,1) 34%, rgba(13,110,253,1) 100%);
+                }
+            </style>
 
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/zakatFitrah/dataMuzakki') }}">
+                
+                <a class="navbar-brand" href="{{ url('/') }}">
                     Zakat.co        
                 </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -92,11 +100,13 @@
                         @else
 
                             <li class="nav-item dropdown">
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -117,6 +127,15 @@
         <style> 
             .navbar-brand {
                 font-weight: 750;
+                color: white !important;
+            } 
+            li a {
+                color: white !important;
+            }
+
+            .dropdown-menu li a,
+            .dropdown-item {
+                color: black !important;
             }
         </style>
 

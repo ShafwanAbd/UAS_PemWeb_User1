@@ -331,7 +331,7 @@
     </div>
 </div>
 
-<div class="container_table mt-5">
+<div class="card p-2 container_table mt-5">
     <table class="table table-hover">
         @if ($datas->isEmpty() != true)
         <thead>
@@ -541,10 +541,8 @@
             </tr>
             @endforeach
         </tbody> 
-        @else
-        <div class="card p-5 mt-5"> 
-            <h5>Data Masih Kosong!</h5>
-        </div> 
+        @else 
+            <h5>Data Masih Kosong!</h5> 
         @endif
     </table>
 </div> 
