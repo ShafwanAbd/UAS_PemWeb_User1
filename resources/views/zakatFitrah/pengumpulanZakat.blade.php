@@ -153,7 +153,114 @@
                                         <div class="mb-3">
                                             <label id="labelFor_kumpulZakat_text2" for="kumpulZakat_text2" class="col-form-label">Bayar (Kg/Rp):</label>
                                             <input name="" type="text" class="form-control" id="kumpulZakat_text2" required> 
-                                        </div> 
+                                        </div>  
+
+                                        <script>
+                                            $(document).ready(function(){
+                                                $('#kumpulZakat_select').change(function(){ 
+                                                    var namaMuzakki = $(this).val();
+                                                    $.ajax({
+                                                        url: '{{ url("get_jumlah_tanggungan_muzakki") }}' + '/' + namaMuzakki ,
+                                                        success: function(response) {   
+                                                            $('#kumpulZakat_text').val(response.jumlahTanggungan); 
+                                                        },
+                                                        error: function(xhr) {
+                                                            console.log(xhr.responseText);
+                                                        }
+                                                    });
+                                                });
+                                            });
+                                        </script>
+
+                                        <script>
+                                            $(document).ready(function() {
+                                                var jenisBayar;
+                                                $('#kumpulZakat_select2').on('input', function(){
+                                                    jenisBayar = $(this).val();
+                                                    jumlahBayar = $('#kumpulZakat_text2').val(); 
+                                                    helperJTD = $('#helperJTD');
+                                                    jumlahTanggunganDibayar = $('#tanggunganDibayar');
+                                                    valueJenisBayar = $('#kumpulZakat_select2').val();
+
+                                                    if (jenisBayar == 'Beras'){
+                                                        $('#labelFor_kumpulZakat_text2').html('Beras (Kg)'); 
+                                                        $('#kumpulZakat_text2').attr('name', 'bayarBeras'); 
+                                                        if (jumlahBayar){
+                                                            $('#kumpulZakat_text2').val(jumlahBayar/16000);
+                                                        }
+                                                    } else if (jenisBayar == 'Uang'){
+                                                        $('#labelFor_kumpulZakat_text2').html('Uang (Rp)');
+                                                        $('#kumpulZakat_text2').attr('name', 'bayarUang');
+                                                        if (jumlahBayar){
+                                                            $('#kumpulZakat_text2').val(jumlahBayar*16000);
+                                                        }
+                                                    }
+
+                                                    if (valueJenisBayar !== ''){
+                                                        helperJTD.addClass('hidden');
+                                                        jumlahTanggunganDibayar.removeAttr('readonly');
+                                                    }
+                                                }) 
+
+                                                // if user clicked before what planned [BERAS/UANG]
+                                                $('#kumpulZakat_text2').on('click', function(){ 
+                                                    BerasUang = $('#kumpulZakat_text2');
+                                                    valueBerasUang = $('#kumpulZakat_text2').val();
+                                                    helperJTD2 = $('#helperJTD2');
+
+                                                    if (valueBerasUang === ''){
+                                                        helperJTD2.removeClass('hidden');
+                                                    } else {
+                                                        helperJTD2.addClass('hidden'); 
+                                                    } 
+                                                })
+                                                $('#kumpulZakat_text').on('click', function(){ 
+                                                    BerasUang = $('#kumpulZakat_text');
+                                                    valueBerasUang = $('#kumpulZakat_text').val();
+                                                    helperJTD2 = $('#helperJTD2');
+
+                                                    if (valueBerasUang === ''){
+                                                        helperJTD2.removeClass('hidden');
+                                                    } else {
+                                                        helperJTD2.addClass('hidden'); 
+                                                    } 
+                                                })
+
+                                                // if user clicked before what planned [JUMLAH TANGGUNGAN DIBAYAR]
+                                                $('#tanggunganDibayar').on('click', function(){ 
+                                                    JenisBayar = $('#kumpulZakat_select2');
+                                                    valueJenisBayar = $('#kumpulZakat_select2').val();
+                                                    helperJTD = $('#helperJTD');
+
+                                                    BerasUang = $('#kumpulZakat_text2');
+                                                    valueBerasUang = $('#kumpulZakat_text2').val();
+                                                    helperJTD2 = $('#helperJTD2');
+
+                                                    if (valueJenisBayar !== 'Beras' && valueJenisBayar !== 'Uang'){
+                                                        helperJTD.removeClass('hidden');
+                                                    } else {
+                                                        helperJTD.addClass('hidden');
+                                                        jumlahTanggunganDibayar.removeAttr('readonly');
+                                                    } 
+
+                                                    if (valueBerasUang !== ''){ 
+                                                        helperJTD2.addClass('hidden'); 
+                                                    } 
+                                                })
+                                                
+                                                // fixed
+                                                $('#tanggunganDibayar').on('input', function() {
+                                                    var answ = $('#tanggunganDibayar').val();  
+
+                                                    if (jenisBayar == 'Beras'){
+                                                        $('#kumpulZakat_text2').val(2.5*answ);
+                                                    } else if (jenisBayar == 'Uang') {
+                                                        $('#kumpulZakat_text2').val(40000*answ);
+                                                    }
+                                                })
+                                            });
+                                        </script> 
+
                                     </div>
                                 </div>
 
@@ -218,8 +325,6 @@
                                                 </script> 
 
                 </div>
-            @else
-                <button class="btn btn-primary" href="{{ url('login') }}" data-bs-toggle="modal" data-bs-target="#modal_login">Tambah</button>
             @endif
         </div>
 

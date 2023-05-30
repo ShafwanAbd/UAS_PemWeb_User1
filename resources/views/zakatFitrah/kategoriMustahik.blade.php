@@ -53,12 +53,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        @else
-        <div>
-        <button class="btn btn-primary" href="{{ url('login') }}">Tambah</button>
-
-        </div>
+        </div> 
         @endif
     </div>
 </div>

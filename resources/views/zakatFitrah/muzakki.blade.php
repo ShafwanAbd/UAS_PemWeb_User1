@@ -56,32 +56,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            @else
-            <div>            
-                <button class="item tambah" href="{{ url('login') }}" data-bs-toggle="modal" data-bs-target="#modal_login">Tambah</button>
-            </div>
-
-            <div class="modal fade hapusModal" id="modal_login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Kamu Belum Login Nih ...</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body"> 
-
-                            <p>Kamu harus melakukan login terlebih dahulu jika ingin menambahkan data</p>
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button> 
-                            <a href="{{ url('login') }}" class="btn btn-secondary">Login</a>
-                            </form>
-                        </div> 
-                    </div>
-                </div>
-            </div>
+            </div> 
             @endif
 
         </div>

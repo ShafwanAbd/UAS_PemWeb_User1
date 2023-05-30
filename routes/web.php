@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\DistribusiLainnyaController;
 use App\Http\Controllers\DistribusiZakatController;
-use App\Http\Controllers\KategoriMustahikController;  
+use App\Http\Controllers\KategoriMustahikController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\MuzakkiController;
 use App\Http\Controllers\PengumpulanZakatController;
 

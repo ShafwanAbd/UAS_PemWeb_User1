@@ -150,9 +150,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            @else
-            <button class="image.png" href="{{ url('login') }}">Tambah</button>
+            </div> 
             @endif 
         </div>
     </div>
